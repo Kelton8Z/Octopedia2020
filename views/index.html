@@ -357,6 +357,8 @@ var config = credentialsConfig;
 // 	storageBucket: "bucket.appspot.com"
 // };
 
+console.log("This is success");
+
 
 firebase.initializeApp(config);
 
@@ -375,6 +377,33 @@ var DEFAULT_TIME_DELAY = 3000;
 
 // Variable for the chatlogs div
 var $chatlogs = $('.chatlogs');
+
+//variables for chat token
+var chatToken;
+var chatID;
+var authID="Bearer lnAc0Bu571c.0beYsq4xvN3SvPcUlkyMQ0t1BiD2zVD62gMFodr5lLw";
+var watermark="";
+
+//start a conversation with direct line api 3.0
+$.ajax({
+    type:"POST",
+    url:"https://directline.botframework.com/v3/directline/conversations",
+    headers:{
+        "Authorization": authID
+    },
+    success:function(data){
+        console.log(data);
+        chatToken=data.token;
+        chatID=data.conversationId;
+		console.log(chatID);
+		console.log(data["conversationId"]);
+
+    },
+    error:function(){
+        console.log("error");
+    }
+});
+
 	
 
 $('document').ready(function(){
@@ -484,29 +513,66 @@ function send(text) {
 	lastSentMessage = text;
 	storeMessageToDB();
 
+	console.log("Message sent" + text);
+
+	var Activity={"type": "message",
+    		"from": {
+        			"id": "user1"
+    		},
+    		"text": text
+			} ;
 
 	// AJAX post request, sends the users text to API.AI and 
-	// calls the method newReceivedMessage with the response from API.AI
+    // calls the method newReceivedMessage with the response from API.AI
+    //change this to config
 	$.ajax({
 		type: "POST",
-		url: baseUrl + "query?v=20150910",
-		contentType: "application/json; charset=utf-8",
-		dataType: "json",
+		url: "https://directline.botframework.com/v3/directline/conversations/"+chatID+"/activities",
 		headers: {
-			"Authorization": "Bearer " + accessToken
+			"Authorization": "Bearer lnAc0Bu571c.0beYsq4xvN3SvPcUlkyMQ0t1BiD2zVD62gMFodr5lLw",
+			"Content-Type": "application/json",
 		},
-		data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+		dataType:"json",
+		data: JSON.stringify({"type": "message",
+    		"from": {
+        			"id": "user1"
+    		},
+    		"text": text
+			}),
+		//data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
 		success: function(data) {
             console.log(data);
-		
+			
 		// Pass the response into the method 
-		newRecievedMessage(JSON.stringify(data.result.fulfillment.speech, undefined, 2));
-
+		//newRecievedMessage(JSON.stringify(data.result.fulfillment.speech, undefined, 2));
+			requestMessage(data.id);
 		},
 		error: function() {
 			newRecievedMessage("Internal Server Error");
 		}
 	});
+}
+
+//Request message from conversation
+
+function requestMessage(messageID){
+	$.ajax({
+    type:"GET",
+    url:"https://directline.botframework.com/v3/directline/conversations/"+chatID+"/activities?"+watermark,
+    headers:{
+        "Authorization": authID
+    },
+    success:function(data){
+        console.log(data);
+		watermark=data.watermark;
+		console.log(data.activities[watermark].text);
+		newRecievedMessage(data.activities[watermark].text);
+    },
+    error:function(){
+        console.log("error");
+    }
+});
+
 }
 
 
