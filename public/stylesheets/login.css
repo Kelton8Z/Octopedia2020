@@ -1,0 +1,101 @@
+body {
+    background: rgba(94, 47, 207, 0.1);
+    background-size: cover;
+    font-size: 1rem;
+}
+
+.back {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.my_title {
+    width: 60vmin;
+    margin-top: 16vh;
+}
+
+.my_login {
+    width: 60vmin;
+    margin-top: 10px;
+    color: white;
+    background: rgba(94, 47, 207, 0.6);
+}
+
+.form-size {
+    width: 60vmin;
+}
+
+input[type="text"], input[type="password"] {
+    padding-left: 10px;
+}
+
+input::-webkit-input-placeholder {
+    font-size: 0.8rem;
+}
+
+h1 {
+    color: cadetblue;
+    font-family: "Kaiti SC", Arial, fantasy;
+    font-size: 2rem;
+}
+
+h2 {
+    font-family: "Kaiti SC", Arial, fantasy;
+}
+
+
+.btn-sign-log {
+    height: 60px;
+    font-size: 1.2rem;
+    color: white;
+    width: 15vmin;
+    margin-left: 10vmin;
+    margin-top: 10px;
+    font-family: "Kaiti SC", Arial, fantasy;
+}
+
+.btn:hover {
+    color: wheat;
+}
+
+.curr_choice {
+    border-bottom: solid 2px white;
+    padding: 3px;
+}
+
+.btn-submit {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: dimgray;
+}
+
+.btn-submit:hover {
+    color: black;
+}
+
+.btn-back {
+    color: blueviolet;
+    font-style: italic;
+}
+
+.btn-back:hover {
+    color: blueviolet;
+}
+
+.my_footer {
+    font-size: 0.8rem;
+    width: 100%;
+    text-align: center;
+    text-decoration-line: underline;
+}
+
+.fa {
+    display: inline-block;
+    position: relative;
+    color: white;
+}
+
+.send_code {
+    color: white;
+    text-decoration-line: underline;
+    font-style: oblique;
+}
