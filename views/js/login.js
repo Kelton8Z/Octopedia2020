@@ -22,7 +22,7 @@ function login() {
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: "chatbot.html",
+        url: "index.html",
         data: $('#login_in_form').serialize(),
         success: function (result) {
             console.log(result);//debug
@@ -40,7 +40,7 @@ function signUp() {
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: "chatbot.html",
+        url: "index.html",
         data: $('#sign_up_form').serialize(),
         success: function (result) {
             console.log(result);//debug
