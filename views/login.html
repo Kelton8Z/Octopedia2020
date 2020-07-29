@@ -16,13 +16,13 @@
 <body>
 
 <!--javascript-->
-<script type = "text/javascript" src = "js/jquery-1.12.4.min.js"></script>
+<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.4.js"></script>
 <script type = "text/javascript" src = "js/bootstrap.min.js"></script>
 <script type = "text/javascript" src = "js/jquery.validate.js"></script>
 
 <div class = "container-fluid">
-	<div class="back">
-		<button id="back" type="button" class="btn btn-back" onclick="location.href='/main'">返回主页
+	<div class = "back">
+		<button id = "back" type = "button" class = "btn btn-back" onclick = "location.href='/main'">返回主页
 	</div>
 	<!--logo+title-->
 	<div class = "my_title row mx-auto">
@@ -52,12 +52,12 @@
 			</div>
 
 			<!--"Octopedia_Users.asp" -->
-			<form id="login_in_form" onsubmit="return false" action = "#" method = "post">
+			<form id = "login_in_form" onsubmit = "return false" action = "#" method = "post">
 				<!--user-->
 				<div class = "row mb-5 mt-2">
 					<div class = "form-inline form-size">
 						<label for = "username"></label>
-						<i class="fa fa-user fa-lg ml-3 col-2 text-center"></i>
+						<i class = "fa fa-user fa-lg ml-3 col-2 text-center"></i>
 						<input type = "text" class = "form-control col-8" placeholder = "用户名" name =
 								"username" id = "username">
 					</div>
@@ -67,7 +67,7 @@
 				<div class = "row  mb-5 mt-2">
 					<div class = "form-inline form-size">
 						<label for = "password"></label>
-						<i class="fa fa-lock fa-lg ml-3 col-2 text-center"></i>
+						<i class = "fa fa-lock fa-lg ml-3 col-2 text-center"></i>
 						<input type = "password" class = "form-control col-8" placeholder = "密码" name =
 								"password" id = "password">
 					</div>
@@ -76,7 +76,7 @@
 				<!--submit-->
 				<div class = "row mb-2">
 					<div class = "mx-auto col">
-						<button id = "loginButton" type = "button" class = "btn btn-block btn-submit" onclick="login()">登录
+						<button id = "loginButton" type = "button" class = "btn btn-block btn-submit" onclick = "login()">登录
 						</button>
 					</div>
 				</div>
