@@ -9,13 +9,13 @@ const app = express();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.sendFile('/home/site/wwwroot/views/index.html');
+    res.sendFile('../views/index.html');
     //  res.render('index', { title: 'alex' });
 });
 
 router.get('/login', function (req, res) {
     res.render('../views/login.html', {url: '/login'});
-})
+});
 
 app.use(express.static);
 
