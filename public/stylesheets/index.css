@@ -8,11 +8,30 @@
 h2 {
     color: blueviolet;
     text-align: center;
-
 }
+
+p{
+    margin-top: 3vh;
+}
+
+.sign-in {
+    text-align: right;
+    margin-right: 50px;
+    margin-top: 1vh;
+}
+
+.btn-sign-log {
+    background-color: white;
+    font-size: 1rem;
+    border: 0px solid;
+    color: blueviolet;
+    font-style: italic;
+}
+
 .row {
     width: 100%;
 }
+
 section {
     border: 2px solid black;
     margin: auto;
@@ -21,15 +40,15 @@ section {
 }
 
 .chatbox {
-    width: 500px;
-    min-width: 390px;
-    height: 600px;
-    background: white;
+    width:70vw;
+    min-width: 430px;
+    height: 60vh;
     padding: 25px;
     margin: 0px auto 0px auto;
     box-shadow: 0 3px #ccc;
     background-color: rgb(247, 241, 221);
 }
+
 .chatlogs {
     padding: 10px;
     width: 100%;
@@ -39,11 +58,11 @@ section {
 }
 
 /*Styling the scrolllbar*/
-.chatlogs::-webkit-scrollbar{
+.chatlogs::-webkit-scrollbar {
     width: 10px;
 }
 
-.chatlogs::-webkit-scrollbar-thumb{
+.chatlogs::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background: rgba(0, 0, 0, .1);
 }
@@ -56,7 +75,7 @@ section {
     margin-bottom: 10px;
 }
 
-.user-photo img{
+.user-photo img {
     background-color: rgb(39, 119, 180);
     padding: 8px;
     width: 100%;
@@ -94,16 +113,16 @@ section {
     overflow-wrap: break-word;
 }
 
-.headerBar{
+.headerBar {
     font-size: 25px;
     color: white;
     padding: 25px;
-    width: 500px;
-    min-width: 390px;
+    width: 70vw;
+    min-width: 430px;
     display: flex;
     flex-flow: row wrap;
     align-items: flex-start;
-    margin: 20px auto 0px auto;
+    margin: 3vh auto auto auto;
     background: blueviolet;;
     border-radius: 10px 10px 0px 0px;
 }
@@ -117,15 +136,15 @@ section {
 
 }
 
-.headerBar .user-photo img{
+.headerBar .user-photo img {
     width: 100%;
 }
 
 .chat-form {
     margin: 0px auto 0px auto;
     display: flex;
-    width: 500px;
-    min-width: 390px;
+    width: 70vw;
+    min-width: 430px;
     align-items: flex-start;
     overflow: auto;
     background: rgb(244, 243, 244);
@@ -152,8 +171,8 @@ section {
     font-size: 18px;
     color: #000;
     margin: 15px 0px 15px 10px;
-    display:block;
-    overflow:hidden;
+    display: block;
+    overflow: hidden;
     box-shadow: none;
     outline: none;
 
@@ -167,21 +186,7 @@ section {
     margin: auto;
 }
 
-/* Old Orange button for speaking, now we have an icon of a microphone*/
-/*.chat-form button {
-    height: 65px;
-    background: rgba(255, 153, 0, .7);;
-    padding: 5px 15px;
-    font-size: 30px;
-    color: white;
-    border: none;
-    margin: 0 10px;
-    border-radius: 3px;
-    box-shadow: 0 3px 0 rgba(255, 153, 0, .7);;
-    cursor: pointer;
-}*/
-
-.chat-form button:hover{
+.chat-form button:hover {
     background: rgb(255, 153, 0);
 }
 
@@ -205,12 +210,12 @@ section {
     float: left;
 }
 
-.buttonResponse:hover{
+.buttonResponse:hover {
     background: rgb(100, 200, 255);
 }
 
 
-#switchInputType{
+#switchInputType {
     max-width: 40px;
     max-height: 40px;
 
@@ -224,5 +229,4 @@ section {
 #buttonDiv {
     margin: 0 auto;
     width: inherit;
-
 }
