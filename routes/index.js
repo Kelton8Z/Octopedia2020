@@ -13,10 +13,6 @@ router.get('/', function (req, res, next) {
     //  res.render('index', { title: 'alex' });
 });
 
-router.get('/login', function (req, res) {
-    res.render('../views/login.html', {url: '/login'});
-});
-
 app.use(express.static);
 
 
