@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', function (req, res) {
-    res.render('../views/login.html', {url: '/login'});
+    res.render('login.html', {url: '/login'});
 });
 
 app.use(express.static);
