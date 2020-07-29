@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const app = express();
+const app=express();
 
 //const path = require("path");
 //const app = express();
@@ -8,19 +8,21 @@ const app = express();
 //app.set("views", path.join(__dirname, "views"));
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     res.sendFile('/home/site/wwwroot/views/index.html');
     //  res.render('index', { title: 'alex' });
 });
 
-router.get('/login', function (req, res, next) {
-    res.render('../views/login.html', {url: '/login'});
-});
+router.get('/login',function (req,res) {
+    res.render('login.html')
+})
 
 app.use(express.static);
 
 
 module.exports = router;
+
+
 
 
 /******* copy from the github and testing now */
@@ -110,6 +112,8 @@ module.exports = router;
 // 	});
 
 
+
+
 // 	//----------------------User Sends Message Methods--------------------------------//
 // 	// Method which executes once the enter key on the keyboard is pressed
 // 	// Primary function sends the text which the user typed
@@ -147,6 +151,7 @@ module.exports = router;
 // 		// Call the method to switch recognition to voice input
 // 		switchRecognition();
 // 	});
+
 
 
 // 	// If the user selects one of the dynamic button responses
@@ -260,6 +265,8 @@ module.exports = router;
 // }
 
 
+
+
 // // Method which takes messages and splits them based off a the delimeter <br 2500>
 // // The integer in the delimeter is optional and represents the time delay in milliseconds
 // // if the delimeter is not there then the time delay is set to the default
@@ -330,6 +337,8 @@ module.exports = router;
 // 	})(listOfMessages, i, numMessages);
 
 // }
+
+
 
 
 // // Method called whenever an <ar tag is found
@@ -404,9 +413,12 @@ module.exports = router;
 // 		}
 
 
+
 // 	}, matches[1]);
 
 // }
+
+
 
 
 // // Method to create a new div showing the text from API.AI
@@ -436,6 +448,8 @@ module.exports = router;
 // }
 
 
+
+
 // //------------------------------------------- Database Write --------------------------------------------------//
 
 // function storeMessageToDB() {
@@ -462,6 +476,8 @@ module.exports = router;
 // }
 
 
+
+
 // // Funtion which shows the typing indicator
 // // As well as hides the textarea and send button
 // function showLoading()
@@ -474,6 +490,7 @@ module.exports = router;
 
 // 	$('.chat-form').css('visibility', 'hidden');
 //  }
+
 
 
 // // Function which hides the typing indicator
@@ -491,12 +508,16 @@ module.exports = router;
 // }
 
 
+
 // // Method which checks to see if a message is in visible
 // function checkVisibility(message)
 // {
 // 	// Scroll the view down a certain amount
 // 	$chatlogs.stop().animate({scrollTop: $chatlogs[0].scrollHeight});
 // }
+
+
+
 
 
 // //----------------------Voice Message Methods--------------------------------//
@@ -537,6 +558,7 @@ module.exports = router;
 // }
 
 
+
 // function stopRecognition() {
 // 	if (recognition) {
 //         console.log("Stop Recog");
@@ -545,6 +567,7 @@ module.exports = router;
 // 	}
 // 	updateRec();
 // }
+
 
 
 // function switchRecognition() {
@@ -599,6 +622,8 @@ module.exports = router;
 //   	window.speechSynthesis.speak(msg);
 
 // }
+
+
 
 
 // //----------------------------------------- Resize the textarea ------------------------------------------//
