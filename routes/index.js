@@ -14,8 +14,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login',function (req,res) {
-    res.render('login.html')
-})
+    res.render('login.jade');
+});
 
 app.use(express.static);
 
