@@ -12,6 +12,14 @@ router.get('/login', function (req, res, next) {
     res.sendFile('/home/site/wwwroot/views/login.html');
 });
 
+router.get('/signup', function (req, res, next) {
+    res.sendFile('/home/site/wwwroot/views/signup.html');
+});
+
+router.get('/findPassword', function (req, res, next) {
+    res.sendFile('/home/site/wwwroot/views/findPassword.html');
+});
+
 app.use(express.static);
 
 module.exports = router;
