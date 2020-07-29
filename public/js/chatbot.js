@@ -109,11 +109,11 @@ $('document').ready(function () {
 
         // Toggle which input type is shown
         if ($('.buttonResponse').is(":visible")) {
-            $("#switchInputType").attr("src", "https://i.ibb.co/xCGqvns/tupian3.png");
+            $("#switchInputType").attr("src", "https://i.ibb.co/0F52THg/microphone.png");
         } else {
-            $("#switchInputType").attr("src", "https://i.ibb.co/xCGqvns/tupian3.png");
+            $("#switchInputType").attr("src", "https://i.ibb.co/8rpK389/keyboard.png");
+            $('textarea').toggle();
         }
-        $('textarea').toggle();
         $('.buttonResponse').toggle();
 
     });
