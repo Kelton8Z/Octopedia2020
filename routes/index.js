@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', function (req, res, next) {
-    res.redirect(200, 'login');
+    res.sendFile('/home/site/wwwroot/views/login.html');
 });
 
 app.use(express.static);
