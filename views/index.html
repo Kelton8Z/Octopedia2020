@@ -1,65 +1,999 @@
+
 <!DOCTYPE html>
-<html lang = "ch">
+<html>
+<style>
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		font-family: sans-serif;
+	}
 
+	h2 {
+		color: blueviolet;
+		text-align: center;
+
+	}
+	.row {
+		width: 100%;
+	}
+	section {
+		border: 2px solid black;
+		margin: auto;
+		width: 50%;
+		height: 40px;
+	}
+
+	.chatbox {
+		width: 500px;
+		min-width: 390px;
+		height: 600px;
+		background: white;
+		padding: 25px;
+		margin: 0px auto 0px auto;
+		box-shadow: 0 3px #ccc;
+		background-color: rgb(247, 241, 221);
+	}
+	.chatlogs {
+		padding: 10px;
+		width: 100%;
+		height: 100%;
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+
+	/*Styling the scrolllbar*/
+	.chatlogs::-webkit-scrollbar{
+		width: 10px;
+	}
+
+	.chatlogs::-webkit-scrollbar-thumb{
+		border-radius: 5px;
+		background: rgba(0, 0, 0, .1);
+	}
+
+
+	.chat {
+		display: flex;
+		flex-flow: row wrap;
+		align-items: flex-start;
+		margin-bottom: 10px;
+	}
+
+	.user-photo img{
+		background-color: rgb(39, 119, 180);
+		padding: 8px;
+		width: 100%;
+	}
+
+	.chat .chat-message {
+		padding: 15px;
+		margin: 5px 10px 0;
+		font-size: 18px;
+	}
+
+	.user-photo {
+		width: 60px;
+		height: 60px;
+		background: #ccc;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+
+	.friend .chat-message {
+		color: black;
+		width: auto;
+		max-width: 70%;
+		background: rgb(229, 229, 234);
+		border-radius: 20px 20px 20px 0;
+	}
+
+	.self .chat-message {
+		color: white;
+		max-width: 80%;
+		width: auto;
+		margin: 5px 0 5px auto;
+		border-radius: 20px 20px 0px 20px;
+		background: rgb(64, 172, 246);
+		overflow-wrap: break-word;
+	}
+
+	.headerBar{
+		font-size: 25px;
+		color: white;
+		padding: 25px;
+		width: 500px;
+		min-width: 390px;
+		display: flex;
+		flex-flow: row wrap;
+		align-items: flex-start;
+		margin: 20px auto 0px auto;
+		background: blueviolet;;
+		border-radius: 10px 10px 0px 0px;
+	}
+
+	.headerBar .title {
+		margin: auto 20px;
+	}
+
+	.headerBar .user-photo {
+		margin: 0px 0px 0px 10px;
+
+	}
+
+	.headerBar .user-photo img{
+		width: 100%;
+	}
+
+	.chat-form {
+		margin: 0px auto 0px auto;
+		display: flex;
+		width: 500px;
+		min-width: 390px;
+		align-items: flex-start;
+		overflow: auto;
+		background: rgb(244, 243, 244);
+		border-radius: 0 0 10px 10px;
+		border-top: 5px solid rgb(212, 212, 212);
+	}
+
+
+	#inputDiv {
+		width: 75%;
+		margin-right: 15px;
+
+	}
+
+
+	.chat-form textarea {
+		padding: 5px 5px 5px 15px;
+		background: #fbfbfb;
+		width: 100%;
+		min-height: 5px;
+		border: 2px solid lightblue;
+		border-radius: 20px;
+		resize: none;
+		font-size: 18px;
+		color: #000;
+		margin: 15px 0px 15px 10px;
+		display:block;
+		overflow:hidden;
+		box-shadow: none;
+		outline: none;
+
+	}
+
+	.chat-form textarea:focus {
+		background: #fff;
+	}
+
+	#chat-form-buttons {
+		margin: auto;
+	}
+
+	/* Old Orange button for speaking, now we have an icon of a microphone*/
+	/*.chat-form button {
+			height: 65px;
+			background: rgba(255, 153, 0, .7);;
+			padding: 5px 15px;
+			font-size: 30px;
+			color: white;
+			border: none;
+			margin: 0 10px;
+			border-radius: 3px;
+			box-shadow: 0 3px 0 rgba(255, 153, 0, .7);;
+			cursor: pointer;
+	}*/
+
+	.chat-form button:hover{
+		background: rgb(255, 153, 0);
+	}
+
+	.gif img {
+		margin: 10px;
+		border-radius: 20px;
+	}
+
+
+	.buttonResponse {
+		color: white;
+		max-width: 80%;
+		width: fit-content;
+		margin: 5px 0 5px auto;
+		border-radius: 20px 20px 0px 20px;
+		background: rgb(64, 172, 246);
+		overflow-wrap: break-word;
+		font-size: 18px;
+		padding: 10px;
+		margin: 20px 5px;
+		float: left;
+	}
+
+	.buttonResponse:hover{
+		background: rgb(100, 200, 255);
+	}
+
+
+	#switchInputType{
+		max-width: 40px;
+		max-height: 40px;
+
+	}
+
+	#rec {
+		max-width: 40px;
+		max-height: 40px;
+	}
+
+	#buttonDiv {
+		margin: 0 auto;
+		width: inherit;
+
+	}
+</style>
 <head>
-	<!---meta-->
-	<meta http-equiv = "Content-Type" content = "text/html; charset=utf-8"/>
-
-	<!--style-->
-	<link rel = "stylesheet" type = "text/css" href = "stylesheets/index.css">
-	<!--javascript-->
-	<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.4.js"></script>
-	<script src = "http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src = "https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-	<script type = "text/javascript" src = "js/chatbot.js"></script>
-	<title>章鱼留学——你身边的留学顾问</title>
+	<!---<meta name="viewport" content="width=device-width,initial-scale=1"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+	<title>Main Page</title>
 </head>
 <body>
 
-<div class = "row">
-	<div style = "text-align: center; ">
-		<div class = "sign-in">
-			<button id = "sign-in-btn" type = "button" class = "btn btn-sign-log" onclick = "location.href='/login'">
-				登陆/注册
-			</button>
-		</div>
-
+<div class="row">
+	<div style="text-align: center; ">
 		<p>
-			<img src = "https://i.ibb.co/xCGqvns/tupian3.png" alt = "tupian3" width = "100" height = "100">
+			<img src="https://i.ibb.co/xCGqvns/tupian3.png" alt="tupian3" width="300" height="300" >
 		</p>
-		<h2 style = "font-size: 200%;"> Hi, how can I help you?</h2>
+		<h2 style="font-size: 200%;"> Hi, how can I help you?</h2>
 
-		<div class = "headerBar">
-			<div class = "user-photo"><img src = "https://i.ibb.co/xCGqvns/tupian3.png"></div>
-			<p class = "title">Octopedia</p>
+		<!-- <iframe src='https://webchat.botframework.com/embed/octopediaWebBot?s=OM6LDlMCngc.bcw503JKDGABZPTnj7PLa7jD6eimNcuCrrAezWJUmVc'  style='min-width: 400px; width: 100%; min-height: 500px;'></iframe>
+			 </div>
+				 <section>
+					 <p style="color: white;">
+						 search
+					 </p>
+
+				 </section>
+		</div> -->
+
+
+		<!-- <div id="bot"/>
+			<script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+			<script>
+				BotChat.App({
+					directLine: { secret: 'lnAc0Bu571c.0beYsq4xvN3SvPcUlkyMQ0t1BiD2zVD62gMFodr5lLw' },
+					user: { id: 'userid' },
+					bot: { id: 'octopediaWebBot' },
+					resize: 'detect'
+				}, document.getElementById("bot"));
+			</script>
+		</div> -->
+
+		<div class="headerBar">
+			<div class="user-photo"><img src="https://i.ibb.co/xCGqvns/tupian3.png"></div>
+			<p class="title">Octopedia</p>
 		</div>
-		<div class = "chatbox">
-			<div class = "chatlogs">
-				<div class = "chat friend">
-					<div class = "user-photo"><img src = "https://i.ibb.co/xCGqvns/tupian3.png"></div>
-					<p class = "chat-message">Hello!</p>
+		<div class="chatbox">
+			<div class="chatlogs">
+				<div class="chat friend">
+					<div class="user-photo"><img src="https://i.ibb.co/xCGqvns/tupian3.png"></div>
+					<p class="chat-message">Hello!</p>
 				</div>
 
-				<div class = "chat friend" id = "loadingGif" style = "display: none;">
-					<div class = "user-photo"><img src = "https://i.ibb.co/xCGqvns/tupian3.png"></div>
-					<div class = "gif"><img src = "https://s7.gifyu.com/images/loading097814dacadc83f8.th.gif"></div>
+				<div class="chat friend" id="loadingGif" style="display: none;">
+					<div class="user-photo"><img src="https://i.ibb.co/xCGqvns/tupian3.png"></div>
+					<div class="gif"><img src="https://s7.gifyu.com/images/loading097814dacadc83f8.th.gif"></div>
 				</div>
 
 			</div>
 		</div>
-		<div class = "chat-form">
-			<div id = "inputDiv">
-				<div id = "buttonDiv"></div>
-				<textarea class = "input" placeholder = "Message" rows = "1" data-min-rows = '1'></textarea>
+		<div class="chat-form">
+			<div id="inputDiv">
+				<div id="buttonDiv"></div>
+				<textarea class="input" placeholder="Message" rows="1" data-min-rows='1'></textarea>
 			</div>
-			<div id = "chat-form-buttons">
-				<input type = "image" id = "rec" src = "https://i.ibb.co/0F52THg/microphone.png" alt = "">
-				<input type = "image" id = "switchInputType" src = "https://i.ibb.co/8rpK389/keyboard.png" alt = "">
+			<div id="chat-form-buttons">
+				<input type ="image"id="rec" src="https://i.ibb.co/0F52THg/microphone.png"">
+				<input type="image" src="https://i.ibb.co/8rpK389/keyboard.png" id="switchInputType"/>
 			</div>
 		</div>
 		<!-- <a href="https://ibb.co/8rpK389"><img src="https://i.ibb.co/8rpK389/keyboard.png" alt="keyboard" border="0"></a> -->
 		<!--- trying to connect to script that controls actions-->
 		<!-- <script type="text/javascript" src="chat_bot_script.js"></script>   -->
+		<script>
+        // Datanautix help bot
+        //var accessToken = "b56ec2c85b2744ad81aeb6518d30a6ae";
+
+        //----------------------- Emoji Bot ----------------------- //
+        var credentialsAccessToken ="5ae7adf062fa4b5692087da997d2e3a5";
+
+        //var bot name is used for the firebase database
+        var credentialsBotName = "Emoji Bot";
+
+
+        // // HighSchoolAna(Dev)
+        // var credentialsAccessToken = "5489544adf6d490c8438cb7377f4bd60"
+
+        // var credentialsBotName = "High School Ana (Dev)"
+
+
+        var credentialsBaseUrl = "https://api.api.ai/v1/";
+
+        // Initialize Firebase
+        var credentialsConfig = {
+            apiKey: "AIzaSyBV5PiUUxluc5ISR2hcItUH0T7HEH6_ENo",
+            authDomain: "chatinterfacedb.firebaseapp.com",
+            databaseURL: "https://chatinterfacedb.firebaseio.com",
+            projectId: "chatinterfacedb",
+            storageBucket: "chatinterfacedb.appspot.com",
+            messagingSenderId: "922251038710"
+        };
+        //---------------------------------- Credentials Section ----------------------------------//
+        // All credentials come from credentials.js which isnt on github
+
+        // Information needed to access the api.ai bot, only thing needed to be changed
+        // Emoji Bot
+        var accessToken = credentialsAccessToken;
+
+        //var bot name is used for the firebase database
+        var botName = credentialsBotName;
+
+        var baseUrl = credentialsBaseUrl;
+
+        // Initialize Firebase
+        var config = credentialsConfig;
+
+        // The format for config is as follows
+        // Set the configuration for your app
+        // TODO: Replace with your project's config object
+        // You can get this information by creating a project and clicking connect with web or start with web
+        // var config = {
+        // 	apiKey: "apiKey",
+        // 	authDomain: "projectId.firebaseapp.com",
+        // 	databaseURL: "https://databaseName.firebaseio.com",
+        // 	storageBucket: "bucket.appspot.com"
+        // };
+
+        console.log("This is success");
+
+
+        firebase.initializeApp(config);
+
+        // Key for this instance of the chat interface
+        var newKey = firebase.database().ref(botName).push().key;
+        console.log("Key for this chat instance = " + newKey);
+
+        //---------------------------------- Main Code Area ----------------------------------//
+        //  Variables to be used for storing the last message sent and recieved for the database
+        var lastSentMessage = "";
+        var lastRecievedMessage = 1;
+        var ButtonClicked = false;
+
+
+        var DEFAULT_TIME_DELAY = 3000;
+
+        // Variable for the chatlogs div
+        var $chatlogs = $('.chatlogs');
+
+        //variables for chat token
+        var chatToken;
+        var chatID;
+        var authID="Bearer lnAc0Bu571c.0beYsq4xvN3SvPcUlkyMQ0t1BiD2zVD62gMFodr5lLw";
+        var watermark="";
+
+        //start a conversation with direct line api 3.0
+        $.ajax({
+            type:"POST",
+            url:"https://directline.botframework.com/v3/directline/conversations",
+            headers:{
+                "Authorization": authID
+            },
+            success:function(data){
+                console.log(data);
+                chatToken=data.token;
+                chatID=data.conversationId;
+                console.log(chatID);
+                console.log(data["conversationId"]);
+
+            },
+            error:function(){
+                console.log("error");
+            }
+        });
+
+
+
+        $('document').ready(function(){
+
+            // Hide the switch input type button initially
+            $("#switchInputType").toggle();
+
+            // If the switch input type button is pressed
+            $("#switchInputType").click(function(event) {
+
+                // Toggle which input type is shown
+                if($('.buttonResponse').is(":visible")) {
+                    $("#switchInputType").attr("src", "https://i.ibb.co/xCGqvns/tupian3.png");
+                }
+
+                else {
+                    $("#switchInputType").attr("src", "https://i.ibb.co/xCGqvns/tupian3.png");
+                }
+                $('textarea').toggle();
+                $('.buttonResponse').toggle();
+
+            });
+
+
+
+
+            //----------------------User Sends Message Methods--------------------------------//
+            // Method which executes once the enter key on the keyboard is pressed
+            // Primary function sends the text which the user typed
+            $("textarea").keypress(function(event) {
+
+                // If the enter key is pressed
+                if(event.which === 13) {
+
+                    // Ignore the default function of the enter key(Dont go to a new line)
+                    event.preventDefault();
+
+                    ButtonClicked = false;
+
+                    // Call the method for sending a message, pass in the text from the user
+                    send(this.value);
+
+                    // reset the size of the text area
+                    $(".input").attr("rows", "1");
+
+                    // Clear the text area
+                    this.value = "";
+
+                    if($("#switchInputType").is(":visible")) {
+                        $("#switchInputType").toggle();
+                        $('.buttonResponse').remove();
+                    }
+
+                }
+            });
+
+
+            // If the user presses the button for voice input
+            $("#rec").click(function(event) {
+
+                // Call the method to switch recognition to voice input
+                switchRecognition();
+            });
+
+
+
+            // If the user selects one of the dynamic button responses
+            $('.chat-form').on("click", '.buttonResponse', function() {
+
+                ButtonClicked = true;
+
+                // Send the text on the button as a user message
+                send(this.innerText);
+
+                // Show the record button and text input area
+                //$('#rec').toggle();
+                $('textarea').toggle();
+
+                // Hide the button responses and the switch input button
+                $('.buttonResponse').toggle();
+                $('#switchInputType').hide();
+
+                // Remove the button responses from the div
+                $('.buttonResponse').remove();
+
+            });
+
+        })
+
+
+        // Method which takes the users text and sends an AJAX post request to API.AI
+        // Creates a new Div with the users text, and recieves a response message from API.AI
+        function send(text) {
+
+            // Create a div with the text that the user typed in
+            $chatlogs.append(
+                $('<div/>', {'class': 'chat self'}).append(
+                    $('<p/>', {'class': 'chat-message', 'text': text})));
+
+            // Find the last message in the chatlogs
+            var $sentMessage = $(".chatlogs .chat").last();
+
+            // Check to see if that message is visible
+            checkVisibility($sentMessage);
+
+            // update the last message sent variable to be stored in the database and store in database
+            lastSentMessage = text;
+            storeMessageToDB();
+
+            console.log("Message sent" + text);
+
+            var Activity={"type": "message",
+                "from": {
+                    "id": "user1"
+                },
+                "text": text
+            } ;
+
+            // AJAX post request, sends the users text to API.AI and
+            // calls the method newReceivedMessage with the response from API.AI
+            //change this to config
+            $.ajax({
+                type: "POST",
+                url: "https://directline.botframework.com/v3/directline/conversations/"+chatID+"/activities",
+                headers: {
+                    "Authorization": "Bearer lnAc0Bu571c.0beYsq4xvN3SvPcUlkyMQ0t1BiD2zVD62gMFodr5lLw",
+                    "Content-Type": "application/json",
+                },
+                dataType:"json",
+                data: JSON.stringify({"type": "message",
+                    "from": {
+                        "id": "user1"
+                    },
+                    "text": text
+                }),
+                //data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+                success: function(data) {
+                    console.log(data);
+
+                    // Pass the response into the method
+                    //newRecievedMessage(JSON.stringify(data.result.fulfillment.speech, undefined, 2));
+                    requestMessage(data.id);
+                },
+                error: function() {
+                    newRecievedMessage("Internal Server Error");
+                }
+            });
+        }
+
+        //Request message from conversation
+
+        function requestMessage(messageID){
+            $.ajax({
+                type:"GET",
+                url:"https://directline.botframework.com/v3/directline/conversations/"+chatID+"/activities?"+watermark,
+                headers:{
+                    "Authorization": authID
+                },
+                success:function(data){
+                    console.log(data);
+                    watermark=data.watermark;
+                    console.log(data.activities[watermark].text);
+                    newRecievedMessage(data.activities[watermark].text);
+                },
+                error:function(){
+                    console.log("error");
+                }
+            });
+
+        }
+
+
+        //----------------------User Receives Message Methods--------------------------------//
+
+
+        // Method called whenver there is a new recieved message
+        // This message comes from the AJAX request sent to API.AI
+        // This method tells which type of message is to be sent
+        // Splits between the button messages, multi messages and single message
+        function newRecievedMessage(messageText) {
+
+            // Variable storing the message with the "" removed
+            var removedQuotes = messageText.replace(/[""]/g,"");
+
+            // update the last message recieved variable for storage in the database
+            lastRecievedMessage = removedQuotes;
+
+            // If the message contains a <ar then it is a message
+            // whose responses are buttons
+            if(removedQuotes.includes("<ar"))
+            {
+                buttonResponse(removedQuotes);
+            }
+
+            // if the message contains only <br then it is a multi line message
+            else if (removedQuotes.includes("<br"))
+            {
+                multiMessage(removedQuotes);
+            }
+
+            // There arent multiple messages to be sent, or message with buttons
+            else
+            {
+                // Show the typing indicator
+                showLoading();
+
+                // After 3 seconds call the createNewMessage function
+                setTimeout(function() {
+                    createNewMessage(removedQuotes);
+                }, DEFAULT_TIME_DELAY);
+            }
+        }
+
+
+
+
+        // Method which takes messages and splits them based off a the delimeter <br 2500>
+        // The integer in the delimeter is optional and represents the time delay in milliseconds
+        // if the delimeter is not there then the time delay is set to the default
+        function multiMessage(message)
+        {
+
+            // Stores the matches in the message, which match the regex
+            var matches;
+
+            // List of message objects, each message will have a text and time delay
+            var listOfMessages = [];
+
+            // Regex used to find time delay and text of each message
+            var regex = /\<br(?:\s+?(\d+))?\>(.*?)(?=(?:\<br(?:\s+\d+)?\>)|$)/g;
+
+            // While matches are still being found in the message
+            while(matches = regex.exec(message))
+            {
+                // if the time delay is undefined(empty) use the default time delay
+                if(matches[1] == undefined)
+                {
+                    matches[1] = DEFAULT_TIME_DELAY;
+                }
+
+                // Create an array of the responses which will be buttons
+                var messageText  = matches[2].split(/<ar>/);
+
+                // Create a message object and add it to the list of messages
+                listOfMessages.push({
+                    text: messageText[0],
+                    delay: matches[1]
+                });
+            }
+
+
+            // loop index
+            var i = 0;
+
+            // Variable for the number of messages
+            var numMessages = listOfMessages.length;
+
+            // Show the typing indicator
+            showLoading();
+
+            // Function which calls the method createNewMessage after waiting on the message delay
+            (function theLoop (listOfMessages, i, numMessages)
+            {
+
+                // Method which executes after the timedelay
+                setTimeout(function ()
+                {
+
+                    // Create a new message from the server
+                    createNewMessage(listOfMessages[i].text);
+
+                    // If there are still more messages
+                    if (i++ < numMessages - 1)
+                    {
+                        // Show the typing indicator
+                        showLoading();
+
+                        // Call the method again
+                        theLoop(listOfMessages, i, numMessages);
+                    }
+                }, listOfMessages[i].delay);
+
+                // Pass the parameters back into the method
+            })(listOfMessages, i, numMessages);
+
+        }
+
+
+
+
+        // Method called whenever an <ar tag is found
+        // The responses for this type of message will be buttons
+        // This method parses out the time delays, message text and button responses
+        // Then creates a new message with the time delay and creates buttons for the responses
+        function buttonResponse(message)
+        {
+
+            // Stores the matches in the message, which match the regex
+            var matches;
+
+            // Used to store the new HTML div which will be the button
+            var $input;
+
+            // send the message to the multi message method to split it up, message will be sent here
+            multiMessage(message);
+
+            // Regex used to find time delay, text of the message and responses to be buttons
+            var regex = /\<br(?:\s+?(\d+))?\>(.*?)(?=(?:\<ar(?:\s+\d+)?\>)|$)/g;
+
+            // Seach the message and capture the groups which match the regex
+            matches = regex.exec(message);
+
+            console.log(matches);
+
+            // Create an array of the responses which will be buttons
+            var buttonList = message.split(/<ar>/);
+
+            // Remove the first element, The first split is the actual message
+            buttonList = buttonList.splice(1);
+
+            console.log(buttonList);
+
+            // Array which will store all of the newly created buttons
+            var listOfInputs = [];
+
+            // Loop through each response and create a button
+            for (var index = 0; index < buttonList.length; index++)
+            {
+                // Store the current button response
+                var response = buttonList[index];
+
+                // Create a new div element with the text for the current button response
+                $input = $('<div/>', {'class': 'buttonResponse' }).append(
+                    $('<p/>', {'class': 'chat-message', 'text': response}));
+
+                // add the new button to the list of buttons
+                listOfInputs.push($input);
+            }
+
+
+            // Show the typing indicator
+            showLoading();
+
+            // After the time delay call the createNewMessage function
+            setTimeout(function() {
+
+
+                // Hide the send button and the text area
+                // $('#rec').toggle();
+                $('textarea').toggle();
+
+                // Show the switch input button
+                $("#switchInputType").show();
+
+                // For each of the button responses
+                for (var index = 0; index < listOfInputs.length; index++) {
+
+                    // Append to the chat-form div which is at the bottom of the chatbox
+                    listOfInputs[index].appendTo($('#buttonDiv'));
+                }
+
+
+
+            }, matches[1]);
+
+        }
+
+
+
+
+        // Method to create a new div showing the text from API.AI
+        function createNewMessage(message) {
+
+            // Hide the typing indicator
+            hideLoading();
+
+            // take the message and say it back to the user.
+            //speechResponse(message);
+
+            // // Show the send button and the text area
+            // $('#rec').css('visibility', 'visible');
+            // $('textarea').css('visibility', 'visible');
+
+            // Append a new div to the chatlogs body, with an image and the text from API.AI
+            $chatlogs.append(
+                $('<div/>', {'class': 'chat friend'}).append(
+                    $('<div/>', {'class': 'user-photo'}).append($('<img src="https://i.ibb.co/xCGqvns/tupian3.png" />')),
+                    $('<p/>', {'class': 'chat-message', 'text': message})));
+
+            // Find the last message in the chatlogs
+            var $newMessage = $(".chatlogs .chat").last();
+
+            // Call the method to see if the message is visible
+            checkVisibility($newMessage);
+        }
+
+
+
+
+        //------------------------------------------- Database Write --------------------------------------------------//
+
+        function storeMessageToDB() {
+
+            var date = new Date();
+            console.log(date);
+            if (lastRecievedMessage == 1) {
+                var storeMessage = firebase.database().ref(botName).child(newKey).push({
+                    UserResponse: lastSentMessage,
+                    Time: date + ""
+                });
+            }
+
+            else {
+
+                var storeMessage = firebase.database().ref(botName).child(newKey).push({
+                    Question: lastRecievedMessage,
+                    UserResponse: lastSentMessage,
+                    ButtonClicked: ButtonClicked,
+                    Time: date + ""
+                });
+            }
+
+        }
+
+
+
+
+        // Funtion which shows the typing indicator
+        // As well as hides the textarea and send button
+        function showLoading()
+        {
+            $chatlogs.append($('#loadingGif'));
+            $("#loadingGif").show();
+
+            // $('#rec').css('visibility', 'hidden');
+            // $('textarea').css('visibility', 'hidden');
+
+            $('.chat-form').css('visibility', 'hidden');
+        }
+
+
+
+        // Function which hides the typing indicator
+        function hideLoading()
+        {
+            $('.chat-form').css('visibility', 'visible');
+            $("#loadingGif").hide();
+
+            // Clear the text area of text
+            $(".input").val("");
+
+            // reset the size of the text area
+            $(".input").attr("rows", "1");
+
+        }
+
+
+
+        // Method which checks to see if a message is in visible
+        function checkVisibility(message)
+        {
+            // Scroll the view down a certain amount
+            $chatlogs.stop().animate({scrollTop: $chatlogs[0].scrollHeight});
+        }
+
+
+
+
+
+        //----------------------Voice Message Methods--------------------------------//
+        //Voice stuff
+        var recognition;
+
+        function startRecognition() {
+
+            console.log("Start")
+            recognition = new webkitSpeechRecognition();
+
+            recognition.onstart = function(event) {
+
+                console.log("Update");
+                updateRec();
+            };
+
+            recognition.onresult = function(event) {
+
+                var text = "";
+
+                for (var i = event.resultIndex; i < event.results.length; ++i) {
+                    text += event.results[i][0].transcript;
+                }
+
+                setInput(text);
+                stopRecognition();
+
+            };
+
+            recognition.onend = function() {
+                stopRecognition();
+            };
+
+            recognition.lang = "en-US";
+            recognition.start();
+
+        }
+
+
+
+        function stopRecognition() {
+            if (recognition) {
+                console.log("Stop Recog");
+                recognition.stop();
+                recognition = null;
+            }
+            updateRec();
+        }
+
+
+
+        function switchRecognition() {
+            if (recognition) {
+                console.log(" Stop if");
+                stopRecognition();
+            } else {
+                startRecognition();
+            }
+        }
+
+
+        function setInput(text) {
+            $(".input").val(text);
+
+            send(text);
+
+            $(".input").val("");
+
+        }
+
+
+        function updateRec() {
+
+
+            if (recognition) {
+                $("#rec").attr("src", "https://i.ibb.co/xCGqvns/tupian3.png");
+            } else {
+                $("#rec").attr("src", "https://i.ibb.co/xCGqvns/tupian3.png");
+
+            }
+        }
+
+        function speechResponse(message)
+        {
+
+            var msg = new SpeechSynthesisUtterance();
+
+            // These lines list all of the voices which can be used in speechSynthesis
+            //var voices = speechSynthesis.getVoices();
+            //console.log(voices);
+
+
+            msg.default = false;
+            msg.voiceURI = "Fiona";
+            msg.name = "Fiona";
+            msg.localService = true;
+            msg.text = message;
+            msg.lang = "en";
+            msg.rate = .9;
+            msg.volume = 1;
+            window.speechSynthesis.speak(msg);
+
+        }
+
+
+
+
+        //----------------------------------------- Resize the textarea ------------------------------------------//
+        $(document)
+            .one('focus.input', 'textarea.input', function(){
+                var savedValue = this.value;
+                this.value = '';
+                this.baseScrollHeight = this.scrollHeight;
+                this.value = savedValue;
+            })
+            .on('input.input', 'textarea.input', function(){
+                var minRows = this.getAttribute('data-min-rows')|0, rows;
+                this.rows = minRows;
+                rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
+                this.rows = minRows + rows;
+            });
+		</script>
 	</div>
 </div>
 </body>
