@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const app=express();
 
 //const path = require("path");
 //const app = express();
@@ -12,7 +13,7 @@ router.get('/', function(req, res, next) {
     //  res.render('index', { title: 'alex' });
 });
 
-
+app.use(express.static);
 
 
 module.exports = router;
