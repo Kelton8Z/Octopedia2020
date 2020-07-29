@@ -49,7 +49,7 @@ function signUp() {
             }
         },
         error: function () {
-            alert("注册失败");
+            alert("注册失败了怎么办");
         }
     })
 }

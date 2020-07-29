@@ -18,11 +18,12 @@
 <!--javascript-->
 <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.4.js"></script>
 <script type = "text/javascript" src = "js/bootstrap.min.js"></script>
-<script type = "text/javascript" src = "https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
+<script type = "text/javascript"
+        src = "https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
 
 <div class = "container-fluid">
-	<div class="back">
-		<button id="back" type="button" class="btn btn-back" onclick="location.href='/main'">返回主页
+	<div class = "back">
+		<button id = "back" type = "button" class = "btn btn-back" onclick = "location.href='/main'">返回主页
 	</div>
 	<!--logo+title-->
 	<div class = "my_title row mx-auto">
@@ -52,12 +53,12 @@
 			</div>
 
 			<!--"Octopedia_Users.asp" -->
-			<form id="login_in_form" onsubmit="return false" action = "#" method = "post">
+			<form id = "login_in_form" onsubmit = "return false" action = "#" method = "post">
 				<!--user-->
 				<div class = "row mb-5 mt-2">
 					<div class = "form-inline form-size">
 						<label for = "username"></label>
-						<i class="fa fa-user fa-lg ml-3 col-2 text-center"></i>
+						<i class = "fa fa-user fa-lg ml-3 col-2 text-center"></i>
 						<input type = "text" class = "form-control col-8" placeholder = "用户名" name =
 								"username" id = "username">
 					</div>
@@ -67,7 +68,7 @@
 				<div class = "row  mb-5 mt-2">
 					<div class = "form-inline form-size">
 						<label for = "password"></label>
-						<i class="fa fa-lock fa-lg ml-3 col-2 text-center"></i>
+						<i class = "fa fa-lock fa-lg ml-3 col-2 text-center"></i>
 						<input type = "password" class = "form-control col-8" placeholder = "密码" name =
 								"password" id = "password">
 					</div>
@@ -76,7 +77,7 @@
 				<!--submit-->
 				<div class = "row mb-2">
 					<div class = "mx-auto col">
-						<button id = "loginButton" type = "button" class = "btn btn-block btn-submit" onclick="login()">登录
+						<button id = "loginButton" type = "button" class = "btn btn-block btn-submit" onclick = "login()">登录
 						</button>
 					</div>
 				</div>
@@ -87,6 +88,57 @@
 					忘记密码
 				</a>
 			</footer>
+			<script>
+          // validate signup form on keyup and submit
+          $("#login_in_form").validate({
+              debug: true,
+
+              onfocusout: function (element) {
+                  $(element).valid();
+              },
+              // the errorPlacement has to take the table layout into account
+              errorPlacement: function (error, element) {
+                  error.insertAfter(element);
+              },
+
+              rules: {
+                  username: {
+                      required: true,
+                      remote: "users.action"
+                  },
+                  password: {
+                      required: true,
+                      minlength: 8,
+                      maxlength: 20
+                  }
+              },
+
+              messages: {
+                  username: {
+                      required: "请填写昵称",
+                      remote: jQuery.validator.format("昵称不存在")
+                  },
+                  password: {
+                      required: "密码长度为8-20",
+                      minlength: "密码长度为8-20",
+                      maxlength: "密码长度为8-20"
+                  }
+              },
+
+              // specifying a submitHandler prevents the default submit, good for the demo
+              submitHandler: function () {
+                  alert("submitted!");
+              },
+              // set this class to error-labels to indicate valid fields
+              success: function (label) {
+                  // set &nbsp; as text for IE
+                  label.html("&nbsp;").addClass("checked");
+              },
+              highlight: function (element, errorClass) {
+                  $(element).parent().next().find("." + errorClass).removeClass("checked");
+              },
+          });
+			</script>
 		</div>
 	</div>
 </div>
