@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', function (req, res, next) {
-    res.redirect(200, 'www.baidu.com');
+    res.redirect(200, 'login');
 });
 
 app.use(express.static);
