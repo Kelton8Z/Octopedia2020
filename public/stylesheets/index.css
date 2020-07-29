@@ -132,7 +132,7 @@ section {
 }
 
 .headerBar .user-photo {
-    margin: 0px 0px 0px 10px;
+    margin: 0 0 0 10px;
 
 }
 
@@ -141,7 +141,7 @@ section {
 }
 
 .chat-form {
-    margin: 0px auto 0px auto;
+    margin: 0 auto 0 auto;
     display: flex;
     width: 70vw;
     min-width: 430px;
@@ -171,7 +171,6 @@ section {
     font-size: 18px;
     color: #000;
     margin: 15px 0px 15px 10px;
-    display: block;
     overflow: hidden;
     box-shadow: none;
     outline: none;
@@ -200,7 +199,6 @@ section {
     color: white;
     max-width: 80%;
     width: fit-content;
-    margin: 5px 0 5px auto;
     border-radius: 20px 20px 0px 20px;
     background: rgb(64, 172, 246);
     overflow-wrap: break-word;

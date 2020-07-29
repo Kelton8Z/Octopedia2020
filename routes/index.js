@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const app=express();
+const app = express();
 
 //const path = require("path");
 //const app = express();
@@ -8,21 +8,19 @@ const app=express();
 //app.set("views", path.join(__dirname, "views"));
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     res.sendFile('/home/site/wwwroot/views/index.html');
     //  res.render('index', { title: 'alex' });
 });
 
-router.get('/login',function (req,res) {
-    res.sendFile('/home/site/wwwroot/views/login.html');
+router.get('/login', function (req, res) {
+    res.render('../views/login.html', {url: '/login'});
 })
 
 app.use(express.static);
 
 
 module.exports = router;
-
-
 
 
 /******* copy from the github and testing now */
@@ -88,10 +86,10 @@ module.exports = router;
 
 // // Variable for the chatlogs div
 // var $chatlogs = $('.chatlogs');
-	
+
 
 // $('document').ready(function(){
-	
+
 // 	// Hide the switch input type button initially
 // 	$("#switchInputType").toggle();
 
@@ -112,13 +110,11 @@ module.exports = router;
 // 	});
 
 
-
-
 // 	//----------------------User Sends Message Methods--------------------------------//
 // 	// Method which executes once the enter key on the keyboard is pressed
 // 	// Primary function sends the text which the user typed
 // 	$("textarea").keypress(function(event) {
-		
+
 // 		// If the enter key is pressed
 // 		if(event.which === 13) {
 
@@ -129,7 +125,7 @@ module.exports = router;
 
 // 			// Call the method for sending a message, pass in the text from the user
 // 			send(this.value);
-			
+
 // 			// reset the size of the text area
 // 			$(".input").attr("rows", "1");
 
@@ -153,7 +149,6 @@ module.exports = router;
 // 	});
 
 
-
 // 	// If the user selects one of the dynamic button responses
 // 	$('.chat-form').on("click", '.buttonResponse', function() {
 
@@ -161,7 +156,7 @@ module.exports = router;
 
 // 		// Send the text on the button as a user message
 // 		send(this.innerText);
-		
+
 // 		// Show the record button and text input area
 // 		//$('#rec').toggle();
 // 		$('textarea').toggle();
@@ -172,7 +167,7 @@ module.exports = router;
 
 // 		// Remove the button responses from the div
 // 		$('.buttonResponse').remove();
-		
+
 // 	});
 
 // })
@@ -189,7 +184,7 @@ module.exports = router;
 
 // 	// Find the last message in the chatlogs
 // 	var $sentMessage = $(".chatlogs .chat").last();
-	
+
 // 	// Check to see if that message is visible
 // 	checkVisibility($sentMessage);
 
@@ -211,7 +206,7 @@ module.exports = router;
 // 		data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
 // 		success: function(data) {
 //             console.log(data);
-		
+
 // 		// Pass the response into the method 
 // 		newRecievedMessage(JSON.stringify(data.result.fulfillment.speech, undefined, 2));
 
@@ -265,8 +260,6 @@ module.exports = router;
 // }
 
 
-
-
 // // Method which takes messages and splits them based off a the delimeter <br 2500>
 // // The integer in the delimeter is optional and represents the time delay in milliseconds
 // // if the delimeter is not there then the time delay is set to the default
@@ -278,7 +271,7 @@ module.exports = router;
 
 // 	// List of message objects, each message will have a text and time delay
 // 	var listOfMessages = [];
-	
+
 // 	// Regex used to find time delay and text of each message
 // 	var regex = /\<br(?:\s+?(\d+))?\>(.*?)(?=(?:\<br(?:\s+\d+)?\>)|$)/g;
 
@@ -321,7 +314,7 @@ module.exports = router;
 
 // 			// Create a new message from the server
 // 			createNewMessage(listOfMessages[i].text);
-			
+
 // 			// If there are still more messages
 // 			if (i++ < numMessages - 1) 
 // 			{   
@@ -332,13 +325,11 @@ module.exports = router;
 // 				theLoop(listOfMessages, i, numMessages);
 // 			}
 // 		}, listOfMessages[i].delay);
-	
+
 // 	// Pass the parameters back into the method
 // 	})(listOfMessages, i, numMessages);
 
 // }
-
-
 
 
 // // Method called whenever an <ar tag is found
@@ -356,7 +347,7 @@ module.exports = router;
 
 // 	// send the message to the multi message method to split it up, message will be sent here
 // 	multiMessage(message);
-	
+
 // 	// Regex used to find time delay, text of the message and responses to be buttons
 // 	var regex = /\<br(?:\s+?(\d+))?\>(.*?)(?=(?:\<ar(?:\s+\d+)?\>)|$)/g;
 
@@ -381,7 +372,7 @@ module.exports = router;
 // 	{
 // 		// Store the current button response
 // 		var response = buttonList[index];
-		
+
 // 		// Create a new div element with the text for the current button response
 // 		$input = $('<div/>', {'class': 'buttonResponse' }).append(
 //             $('<p/>', {'class': 'chat-message', 'text': response}));
@@ -393,11 +384,11 @@ module.exports = router;
 
 // 	// Show the typing indicator
 // 	showLoading();
-	
+
 // 	// After the time delay call the createNewMessage function
 // 	setTimeout(function() {
-			
-		
+
+
 // 		// Hide the send button and the text area
 // 		// $('#rec').toggle();
 // 		$('textarea').toggle();
@@ -407,18 +398,15 @@ module.exports = router;
 
 // 		// For each of the button responses
 // 		for (var index = 0; index < listOfInputs.length; index++) {
-						
+
 // 			// Append to the chat-form div which is at the bottom of the chatbox
 // 			listOfInputs[index].appendTo($('#buttonDiv'));
 // 		}
 
-			
-		
+
 // 	}, matches[1]);
 
 // }
-
-
 
 
 // // Method to create a new div showing the text from API.AI
@@ -448,12 +436,10 @@ module.exports = router;
 // }
 
 
-
-
 // //------------------------------------------- Database Write --------------------------------------------------//
 
 // function storeMessageToDB() {
-  
+
 // 	var date = new Date();
 // 	console.log(date);
 // 	if (lastRecievedMessage == 1) {
@@ -462,7 +448,7 @@ module.exports = router;
 // 			Time: date + ""
 // 		});
 //   	}
-	
+
 // 	else {
 
 // 		var storeMessage = firebase.database().ref(botName).child(newKey).push({
@@ -474,8 +460,6 @@ module.exports = router;
 // 	}
 
 // }
-
-
 
 
 // // Funtion which shows the typing indicator
@@ -492,7 +476,6 @@ module.exports = router;
 //  }
 
 
-
 // // Function which hides the typing indicator
 // function hideLoading()
 // {
@@ -504,9 +487,8 @@ module.exports = router;
 
 // 	// reset the size of the text area
 // 	$(".input").attr("rows", "1");
-	
-// }
 
+// }
 
 
 // // Method which checks to see if a message is in visible
@@ -515,9 +497,6 @@ module.exports = router;
 // 	// Scroll the view down a certain amount
 // 	$chatlogs.stop().animate({scrollTop: $chatlogs[0].scrollHeight});
 // }
-
-
-
 
 
 // //----------------------Voice Message Methods--------------------------------//
@@ -534,29 +513,28 @@ module.exports = router;
 //         console.log("Update");
 // 		updateRec();
 // 	};
-	
+
 // 	recognition.onresult = function(event) {
-	
+
 // 		var text = "";
-	
+
 // 		for (var i = event.resultIndex; i < event.results.length; ++i) {
 // 			text += event.results[i][0].transcript;
 // 		}
-	
+
 // 		setInput(text);
 // 		stopRecognition();
-	
+
 // 	};
-	
+
 // 	recognition.onend = function() {
 // 		stopRecognition();
 // 	};
-	
+
 // 	recognition.lang = "en-US";
 // 	recognition.start();
 
 // }
-
 
 
 // function stopRecognition() {
@@ -567,7 +545,6 @@ module.exports = router;
 // 	}
 // 	updateRec();
 // }
-
 
 
 // function switchRecognition() {
@@ -582,16 +559,16 @@ module.exports = router;
 
 // function setInput(text) {
 // 	$(".input").val(text);
-	
+
 //     send(text);
-	
+
 //     $(".input").val("");
-    
+
 // }
 
 
 // function updateRec() {
-	
+
 
 // 	if (recognition) {
 // 		$("#rec").attr("src", "Images/MicrophoneOff.png");
@@ -609,8 +586,8 @@ module.exports = router;
 // 	// These lines list all of the voices which can be used in speechSynthesis
 // 	//var voices = speechSynthesis.getVoices();
 // 	//console.log(voices);
-	
-	
+
+
 // 	msg.default = false;
 //  	msg.voiceURI = "Fiona";
 // 	msg.name = "Fiona";
@@ -622,8 +599,6 @@ module.exports = router;
 //   	window.speechSynthesis.speak(msg);
 
 // }
-
-
 
 
 // //----------------------------------------- Resize the textarea ------------------------------------------//

@@ -66,6 +66,7 @@ var lastSentMessage = "";
 var lastRecievedMessage = 1;
 var ButtonClicked = false;
 
+
 var DEFAULT_TIME_DELAY = 3000;
 
 // Variable for the chatlogs div
@@ -97,6 +98,7 @@ $.ajax({
     }
 });
 
+
 $('document').ready(function () {
 
     // Hide the switch input type button initially
@@ -115,6 +117,7 @@ $('document').ready(function () {
         $('.buttonResponse').toggle();
 
     });
+
 
     //----------------------User Sends Message Methods--------------------------------//
     // Method which executes once the enter key on the keyboard is pressed
@@ -145,6 +148,7 @@ $('document').ready(function () {
 
         }
     });
+
 
     // If the user presses the button for voice input
     $("#rec").click(function (event) {
@@ -260,6 +264,7 @@ function requestMessage(messageID) {
     });
 
 }
+
 
 //----------------------User Receives Message Methods--------------------------------//
 
@@ -641,4 +646,3 @@ $(document)
         rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
         this.rows = minRows + rows;
     });
-
