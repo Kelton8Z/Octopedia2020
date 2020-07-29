@@ -1,74 +1,55 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<!---<meta name="viewport" content="width=device-width,initial-scale=1"> -->
 	<!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+	<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.4.js"></script>
+	<meta http-equiv = "Content-Type" content = "text/html; charset=utf-8"/>
+	<script src = "http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src = "https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 	<title>Main Page</title>
-	<link rel="stylesheet" type="text/css" href="stylesheets/index.css"/>
+	<link rel = "stylesheet" type = "text/css" href = "stylesheets/index.css"/>
 </head>
 <body>
 
-<div class="row">
-	<div style="text-align: center; ">
+<div class = "row">
+	<div style = "text-align: center; ">
+		<div class = "sign-in">
+			<button id = "sign-in-btn" type = "button" class = "btn btn-sign-log" onclick = "location.href='login.html'">
+				登陆/注册
+			</button>
+		</div>
 		<p>
-			<img src="https://i.ibb.co/xCGqvns/tupian3.png" alt="tupian3" width="300" height="300" >
+			<img src = "https://i.ibb.co/xCGqvns/tupian3.png" alt = "tupian3" width = "100" height = "100">
 		</p>
-		<h2 style="font-size: 200%;"> Hi, how can I help you?</h2>
+		<h2 style = "font-size: 200%;"> Hi, how can I help you?</h2>
 
-		<!-- <iframe src='https://webchat.botframework.com/embed/octopediaWebBot?s=OM6LDlMCngc.bcw503JKDGABZPTnj7PLa7jD6eimNcuCrrAezWJUmVc'  style='min-width: 400px; width: 100%; min-height: 500px;'></iframe>
-			 </div>
-				 <section>
-					 <p style="color: white;">
-						 search
-					 </p>
-
-				 </section>
-		</div> -->
-
-
-		<!-- <div id="bot"/>
-			<script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
-			<script>
-				BotChat.App({
-					directLine: { secret: 'lnAc0Bu571c.0beYsq4xvN3SvPcUlkyMQ0t1BiD2zVD62gMFodr5lLw' },
-					user: { id: 'userid' },
-					bot: { id: 'octopediaWebBot' },
-					resize: 'detect'
-				}, document.getElementById("bot"));
-			</script>
-		</div> -->
-
-		<div class="headerBar">
-			<div class="user-photo"><img src="https://i.ibb.co/xCGqvns/tupian3.png"></div>
-			<p class="title">Octopedia</p>
+		<div class = "headerBar">
+			<div class = "user-photo"><img src = "https://i.ibb.co/xCGqvns/tupian3.png"></div>
+			<p class = "title">Octopedia</p>
 		</div>
-		<div class="chatbox">
-			<div class="chatlogs">
-				<div class="chat friend">
-					<div class="user-photo"><img src="https://i.ibb.co/xCGqvns/tupian3.png"></div>
-					<p class="chat-message">Hello!</p>
+		<div class = "chatbox">
+			<div class = "chatlogs">
+				<div class = "chat friend">
+					<div class = "user-photo"><img src = "https://i.ibb.co/xCGqvns/tupian3.png"></div>
+					<p class = "chat-message">Hello!</p>
 				</div>
 
-				<div class="chat friend" id="loadingGif" style="display: none;">
-					<div class="user-photo"><img src="https://i.ibb.co/xCGqvns/tupian3.png"></div>
-					<div class="gif"><img src="https://s7.gifyu.com/images/loading097814dacadc83f8.th.gif"></div>
+				<div class = "chat friend" id = "loadingGif" style = "display: none;">
+					<div class = "user-photo"><img src = "https://i.ibb.co/xCGqvns/tupian3.png"></div>
+					<div class = "gif"><img src = "https://s7.gifyu.com/images/loading097814dacadc83f8.th.gif"></div>
 				</div>
 
 			</div>
 		</div>
-		<div class="chat-form">
-			<div id="inputDiv">
-				<div id="buttonDiv"></div>
-				<textarea class="input" placeholder="Message" rows="1" data-min-rows='1'></textarea>
+		<div class = "chat-form">
+			<div id = "inputDiv">
+				<div id = "buttonDiv"></div>
+				<textarea class = "input" placeholder = "Message" rows = "1" data-min-rows = '1'></textarea>
 			</div>
-			<div id="chat-form-buttons">
-				<input type ="image"id="rec" src="https://i.ibb.co/0F52THg/microphone.png"">
-				<input type="image" src="https://i.ibb.co/8rpK389/keyboard.png" id="switchInputType"/>
+			<div id = "chat-form-buttons">
+				<input type = "image" id = "rec" src = "https://i.ibb.co/0F52THg/microphone.png"">
+				<input type = "image" src = "https://i.ibb.co/8rpK389/keyboard.png" id = "switchInputType"/>
 			</div>
 		</div>
 		<!-- <a href="https://ibb.co/8rpK389"><img src="https://i.ibb.co/8rpK389/keyboard.png" alt="keyboard" border="0"></a> -->
@@ -79,7 +60,7 @@
         //var accessToken = "b56ec2c85b2744ad81aeb6518d30a6ae";
 
         //----------------------- Emoji Bot ----------------------- //
-        var credentialsAccessToken ="5ae7adf062fa4b5692087da997d2e3a5";
+        var credentialsAccessToken = "5ae7adf062fa4b5692087da997d2e3a5";
 
         //var bot name is used for the firebase database
         var credentialsBotName = "Emoji Bot";
@@ -152,45 +133,42 @@
         //variables for chat token
         var chatToken;
         var chatID;
-        var authID="Bearer lnAc0Bu571c.0beYsq4xvN3SvPcUlkyMQ0t1BiD2zVD62gMFodr5lLw";
-        var watermark="";
+        var authID = "Bearer lnAc0Bu571c.0beYsq4xvN3SvPcUlkyMQ0t1BiD2zVD62gMFodr5lLw";
+        var watermark = "";
 
         //start a conversation with direct line api 3.0
         $.ajax({
-            type:"POST",
-            url:"https://directline.botframework.com/v3/directline/conversations",
-            headers:{
+            type: "POST",
+            url: "https://directline.botframework.com/v3/directline/conversations",
+            headers: {
                 "Authorization": authID
             },
-            success:function(data){
+            success: function (data) {
                 console.log(data);
-                chatToken=data.token;
-                chatID=data.conversationId;
+                chatToken = data.token;
+                chatID = data.conversationId;
                 console.log(chatID);
                 console.log(data["conversationId"]);
 
             },
-            error:function(){
+            error: function () {
                 console.log("error");
             }
         });
 
 
-
-        $('document').ready(function(){
+        $('document').ready(function () {
 
             // Hide the switch input type button initially
             $("#switchInputType").toggle();
 
             // If the switch input type button is pressed
-            $("#switchInputType").click(function(event) {
+            $("#switchInputType").click(function (event) {
 
                 // Toggle which input type is shown
-                if($('.buttonResponse').is(":visible")) {
+                if ($('.buttonResponse').is(":visible")) {
                     $("#switchInputType").attr("src", "https://i.ibb.co/xCGqvns/tupian3.png");
-                }
-
-                else {
+                } else {
                     $("#switchInputType").attr("src", "https://i.ibb.co/xCGqvns/tupian3.png");
                 }
                 $('textarea').toggle();
@@ -199,15 +177,13 @@
             });
 
 
-
-
             //----------------------User Sends Message Methods--------------------------------//
             // Method which executes once the enter key on the keyboard is pressed
             // Primary function sends the text which the user typed
-            $("textarea").keypress(function(event) {
+            $("textarea").keypress(function (event) {
 
                 // If the enter key is pressed
-                if(event.which === 13) {
+                if (event.which === 13) {
 
                     // Ignore the default function of the enter key(Dont go to a new line)
                     event.preventDefault();
@@ -223,7 +199,7 @@
                     // Clear the text area
                     this.value = "";
 
-                    if($("#switchInputType").is(":visible")) {
+                    if ($("#switchInputType").is(":visible")) {
                         $("#switchInputType").toggle();
                         $('.buttonResponse').remove();
                     }
@@ -233,16 +209,15 @@
 
 
             // If the user presses the button for voice input
-            $("#rec").click(function(event) {
+            $("#rec").click(function (event) {
 
                 // Call the method to switch recognition to voice input
                 switchRecognition();
             });
 
 
-
             // If the user selects one of the dynamic button responses
-            $('.chat-form').on("click", '.buttonResponse', function() {
+            $('.chat-form').on("click", '.buttonResponse', function () {
 
                 ButtonClicked = true;
 
@@ -286,39 +261,41 @@
 
             console.log("Message sent" + text);
 
-            var Activity={"type": "message",
+            var Activity = {
+                "type": "message",
                 "from": {
                     "id": "user1"
                 },
                 "text": text
-            } ;
+            };
 
             // AJAX post request, sends the users text to API.AI and
             // calls the method newReceivedMessage with the response from API.AI
             //change this to config
             $.ajax({
                 type: "POST",
-                url: "https://directline.botframework.com/v3/directline/conversations/"+chatID+"/activities",
+                url: "https://directline.botframework.com/v3/directline/conversations/" + chatID + "/activities",
                 headers: {
                     "Authorization": "Bearer lnAc0Bu571c.0beYsq4xvN3SvPcUlkyMQ0t1BiD2zVD62gMFodr5lLw",
                     "Content-Type": "application/json",
                 },
-                dataType:"json",
-                data: JSON.stringify({"type": "message",
+                dataType: "json",
+                data: JSON.stringify({
+                    "type": "message",
                     "from": {
                         "id": "user1"
                     },
                     "text": text
                 }),
                 //data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
-                success: function(data) {
+                success: function (data) {
                     console.log(data);
 
                     // Pass the response into the method
                     //newRecievedMessage(JSON.stringify(data.result.fulfillment.speech, undefined, 2));
                     requestMessage(data.id);
                 },
-                error: function() {
+                error: function () {
                     newRecievedMessage("Internal Server Error");
                 }
             });
@@ -326,20 +303,20 @@
 
         //Request message from conversation
 
-        function requestMessage(messageID){
+        function requestMessage(messageID) {
             $.ajax({
-                type:"GET",
-                url:"https://directline.botframework.com/v3/directline/conversations/"+chatID+"/activities?"+watermark,
-                headers:{
+                type: "GET",
+                url: "https://directline.botframework.com/v3/directline/conversations/" + chatID + "/activities?" + watermark,
+                headers: {
                     "Authorization": authID
                 },
-                success:function(data){
+                success: function (data) {
                     console.log(data);
-                    watermark=data.watermark;
+                    watermark = data.watermark;
                     console.log(data.activities[watermark].text);
                     newRecievedMessage(data.activities[watermark].text);
                 },
-                error:function(){
+                error: function () {
                     console.log("error");
                 }
             });
@@ -357,45 +334,39 @@
         function newRecievedMessage(messageText) {
 
             // Variable storing the message with the "" removed
-            var removedQuotes = messageText.replace(/[""]/g,"");
+            var removedQuotes = messageText.replace(/[""]/g, "");
 
             // update the last message recieved variable for storage in the database
             lastRecievedMessage = removedQuotes;
 
             // If the message contains a <ar then it is a message
             // whose responses are buttons
-            if(removedQuotes.includes("<ar"))
-            {
+            if (removedQuotes.includes("<ar")) {
                 buttonResponse(removedQuotes);
             }
 
             // if the message contains only <br then it is a multi line message
-            else if (removedQuotes.includes("<br"))
-            {
+            else if (removedQuotes.includes("<br")) {
                 multiMessage(removedQuotes);
             }
 
             // There arent multiple messages to be sent, or message with buttons
-            else
-            {
+            else {
                 // Show the typing indicator
                 showLoading();
 
                 // After 3 seconds call the createNewMessage function
-                setTimeout(function() {
+                setTimeout(function () {
                     createNewMessage(removedQuotes);
                 }, DEFAULT_TIME_DELAY);
             }
         }
 
 
-
-
         // Method which takes messages and splits them based off a the delimeter <br 2500>
         // The integer in the delimeter is optional and represents the time delay in milliseconds
         // if the delimeter is not there then the time delay is set to the default
-        function multiMessage(message)
-        {
+        function multiMessage(message) {
 
             // Stores the matches in the message, which match the regex
             var matches;
@@ -407,16 +378,14 @@
             var regex = /\<br(?:\s+?(\d+))?\>(.*?)(?=(?:\<br(?:\s+\d+)?\>)|$)/g;
 
             // While matches are still being found in the message
-            while(matches = regex.exec(message))
-            {
+            while (matches = regex.exec(message)) {
                 // if the time delay is undefined(empty) use the default time delay
-                if(matches[1] == undefined)
-                {
+                if (matches[1] == undefined) {
                     matches[1] = DEFAULT_TIME_DELAY;
                 }
 
                 // Create an array of the responses which will be buttons
-                var messageText  = matches[2].split(/<ar>/);
+                var messageText = matches[2].split(/<ar>/);
 
                 // Create a message object and add it to the list of messages
                 listOfMessages.push({
@@ -436,19 +405,16 @@
             showLoading();
 
             // Function which calls the method createNewMessage after waiting on the message delay
-            (function theLoop (listOfMessages, i, numMessages)
-            {
+            (function theLoop(listOfMessages, i, numMessages) {
 
                 // Method which executes after the timedelay
-                setTimeout(function ()
-                {
+                setTimeout(function () {
 
                     // Create a new message from the server
                     createNewMessage(listOfMessages[i].text);
 
                     // If there are still more messages
-                    if (i++ < numMessages - 1)
-                    {
+                    if (i++ < numMessages - 1) {
                         // Show the typing indicator
                         showLoading();
 
@@ -463,14 +429,11 @@
         }
 
 
-
-
         // Method called whenever an <ar tag is found
         // The responses for this type of message will be buttons
         // This method parses out the time delays, message text and button responses
         // Then creates a new message with the time delay and creates buttons for the responses
-        function buttonResponse(message)
-        {
+        function buttonResponse(message) {
 
             // Stores the matches in the message, which match the regex
             var matches;
@@ -501,13 +464,12 @@
             var listOfInputs = [];
 
             // Loop through each response and create a button
-            for (var index = 0; index < buttonList.length; index++)
-            {
+            for (var index = 0; index < buttonList.length; index++) {
                 // Store the current button response
                 var response = buttonList[index];
 
                 // Create a new div element with the text for the current button response
-                $input = $('<div/>', {'class': 'buttonResponse' }).append(
+                $input = $('<div/>', {'class': 'buttonResponse'}).append(
                     $('<p/>', {'class': 'chat-message', 'text': response}));
 
                 // add the new button to the list of buttons
@@ -519,7 +481,7 @@
             showLoading();
 
             // After the time delay call the createNewMessage function
-            setTimeout(function() {
+            setTimeout(function () {
 
 
                 // Hide the send button and the text area
@@ -537,12 +499,9 @@
                 }
 
 
-
             }, matches[1]);
 
         }
-
-
 
 
         // Method to create a new div showing the text from API.AI
@@ -572,8 +531,6 @@
         }
 
 
-
-
         //------------------------------------------- Database Write --------------------------------------------------//
 
         function storeMessageToDB() {
@@ -585,9 +542,7 @@
                     UserResponse: lastSentMessage,
                     Time: date + ""
                 });
-            }
-
-            else {
+            } else {
 
                 var storeMessage = firebase.database().ref(botName).child(newKey).push({
                     Question: lastRecievedMessage,
@@ -600,12 +555,9 @@
         }
 
 
-
-
         // Funtion which shows the typing indicator
         // As well as hides the textarea and send button
-        function showLoading()
-        {
+        function showLoading() {
             $chatlogs.append($('#loadingGif'));
             $("#loadingGif").show();
 
@@ -616,10 +568,8 @@
         }
 
 
-
         // Function which hides the typing indicator
-        function hideLoading()
-        {
+        function hideLoading() {
             $('.chat-form').css('visibility', 'visible');
             $("#loadingGif").hide();
 
@@ -632,16 +582,11 @@
         }
 
 
-
         // Method which checks to see if a message is in visible
-        function checkVisibility(message)
-        {
+        function checkVisibility(message) {
             // Scroll the view down a certain amount
             $chatlogs.stop().animate({scrollTop: $chatlogs[0].scrollHeight});
         }
-
-
-
 
 
         //----------------------Voice Message Methods--------------------------------//
@@ -653,13 +598,13 @@
             console.log("Start")
             recognition = new webkitSpeechRecognition();
 
-            recognition.onstart = function(event) {
+            recognition.onstart = function (event) {
 
                 console.log("Update");
                 updateRec();
             };
 
-            recognition.onresult = function(event) {
+            recognition.onresult = function (event) {
 
                 var text = "";
 
@@ -672,7 +617,7 @@
 
             };
 
-            recognition.onend = function() {
+            recognition.onend = function () {
                 stopRecognition();
             };
 
@@ -680,7 +625,6 @@
             recognition.start();
 
         }
-
 
 
         function stopRecognition() {
@@ -691,7 +635,6 @@
             }
             updateRec();
         }
-
 
 
         function switchRecognition() {
@@ -725,8 +668,7 @@
             }
         }
 
-        function speechResponse(message)
-        {
+        function speechResponse(message) {
 
             var msg = new SpeechSynthesisUtterance();
 
@@ -748,18 +690,16 @@
         }
 
 
-
-
         //----------------------------------------- Resize the textarea ------------------------------------------//
         $(document)
-            .one('focus.input', 'textarea.input', function(){
+            .one('focus.input', 'textarea.input', function () {
                 var savedValue = this.value;
                 this.value = '';
                 this.baseScrollHeight = this.scrollHeight;
                 this.value = savedValue;
             })
-            .on('input.input', 'textarea.input', function(){
-                var minRows = this.getAttribute('data-min-rows')|0, rows;
+            .on('input.input', 'textarea.input', function () {
+                var minRows = this.getAttribute('data-min-rows') | 0, rows;
                 this.rows = minRows;
                 rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
                 this.rows = minRows + rows;
