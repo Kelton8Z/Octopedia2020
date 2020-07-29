@@ -8,6 +8,11 @@ router.get('/', function (req, res, next) {
     //  res.render('index', { title: 'alex' });
 });
 
+router.get('/main', function (req, res, next) {
+    res.sendFile('/home/site/wwwroot/views/index.html');
+    //  res.render('index', { title: 'alex' });
+});
+
 router.get('/login', function (req, res, next) {
     res.sendFile('/home/site/wwwroot/views/login.html');
 });
