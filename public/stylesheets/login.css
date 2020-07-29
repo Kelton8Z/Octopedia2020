@@ -99,3 +99,9 @@ h2 {
     text-decoration-line: underline;
     font-style: oblique;
 }
+
+label.error {
+    font-size: 14px;
+    margin-left: 13vmin;
+    color: rgba(100, 255, 200, 0.5);
+}
